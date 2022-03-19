@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Project</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form id="search-form">
+        <input type="Search" placeholder="Enter a city" id="search-city-input" autocomplete="off" autofocus="on"/>
+        <input type="Submit" value="Search" />
+        <input type="Button" value="Here" id="geo-Button">
+      </form>
+      <h1 id="location">Sydney, NSW</h1>
+      <div class="row">
+        <div class="col-6">
+         <ul>
+           <li class="date" id="today-day">Saturday</li>
+          <li class="date"><span id="today-monthFull">Feb</span> <span id="today-date">26</span> 
+            <span id="today-hours">16</span>:<span id="today-minutes">00</span></li>
+          <li>Min: <span id="min-temp">4</span>°<span>C</span>/ Max: <span id="max-temp">15</span>°<span class="celsius-unit">C</span></li>
+          <li id="weather-description">Thunderstorms</li>
+          <li>Humidity: <span id="humidity">50</span>%</li>
+          <li>Wind Speed: <span id="wind-speed">1</span>km/h</li>
+          <li><a href="#" id="celsius-link">°C</a> | <a href="#" id="fahrenheit-link">°F</a>
+          </li>
+        </ul>
+        </div>
+        <div class="col-6">
+          <h2><span id="today-current-temp">20°C</span></h2>
+        </div>
+      </div>
+    <p>
+        <div class="row">
+          <h3>SUNDAY</h3>
+          <div class="col-4"><span class="celsius-value">15</span>°<span class="celsius-unit">C</span>/<span class="celsius-value">27</span>°<span class="celsius-unit">C</span></div>
+          <div class="col-4 weather-type">🌧</div>
+          <div class="col-4">RAIN</div>
+        </div>
+    </p>
+      <div class="row">
+        <div class="col-3 date">28/2
+          <div class="row">
+            <div class="col-12 day">MON</div>
+            <div class="col-12 weather-type">🌤</div>
+            <div class="col-12 temperature"><span class="celsius-value">13</span>°<span class="celsius-unit">C</span>/<span class="celsius-value">30</span>°<span class="celsius-unit">C</span></div>
+          </div>
+        </div>
+        <div class="col-3 date">1/3
+          <div class="row">
+            <div class="col-12 day">TUES</div>
+            <div class="col-12 weather-type">☀</div>
+            <div class="col-12 temperature"><span class="celsius-value">14</span>°<span class="celsius-unit">C</span>/<span class="celsius-value">30</span>°<span class="celsius-unit">C</span></div>
+          </div>
+        </div>
+        <div class="col-3 date">2/3
+         <div class="row">
+           <div class="col-12 day">WED</div>
+           <div class="col-12 weather-type">☀</div>
+           <div class="col-12 temperature"><span class="celsius-value">15</span>°<span class="celsius-unit">C</span>/<span class="celsius-value">30</span>°<span class="celsius-unit">C</span></div>
+         </div>
+        </div> 
+        <div class="col-3 date">3/3
+          <div class="row">
+            <div class="col-12 day">THUR</div>
+            <div class="col-12 weather-type">⛈</div>
+            <div class="col-12 temperature"><span class="celsius-value">8</span>°<span class="celsius-unit">C</span>/<span class="celsius-value">24</span>°<span class="celsius-unit">C</span></div>
+          </div>
+       </div>
+    </div>
+    </div>  
+    <footer>Coded By Meg Bamford</footer>
+    <script src="src/script.js"></script>
+  </body>
+</html>

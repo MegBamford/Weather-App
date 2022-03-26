@@ -3,6 +3,8 @@ form {
   padding-bottom: 10px;
 }
 body {
+  height: 100%;
+  margin: 0;
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #fff;
   background: radial-gradient(
@@ -12,10 +14,9 @@ body {
     rgb(190, 228, 210) 62.3%,
     rgb(215, 248, 247) 93.8%
   );
-  background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 10px;
-  padding-bottom: 130px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 h1 {
   font-weight: 700;

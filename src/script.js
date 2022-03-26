@@ -82,6 +82,7 @@ function search(event) {
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
+
 //
 // add response data to html
 function currentTemperature(response) {

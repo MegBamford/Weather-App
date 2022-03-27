@@ -86,7 +86,7 @@ form.addEventListener("submit", search);
 //
 // add response data to html
 function currentTemperature(response) {
-  //console.log(response.data);
+  console.log(response.data);
   let city = response.data.name;
   let country = response.data.sys.country;
   let location = document.querySelector("h1");
@@ -107,10 +107,15 @@ function currentTemperature(response) {
     response.data.weather[0].description;
   let windSpeed = document.querySelector("#wind-speed");
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
+  let iconElement = document.querySelector("#icon-main");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 //
-//celsius to fahrenheit
+//ctof and ftoc temperature
 function fahrenheitLink(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#today-current-temp");

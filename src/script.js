@@ -85,35 +85,40 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
 
 //
+
 // add response data to html
 function currentTemperature(response) {
   console.log(response.data);
   let city = response.data.name;
   let country = response.data.sys.country;
   let location = document.querySelector("h1");
-  location.innerHTML = `${city}, ${country}`;
   let currentTempElement = document.querySelector("#today-current-temp");
+  let minTemp = document.querySelector("#min-temp");
+  let maxTemp = document.querySelector("#max-temp");
+  let humidity = document.querySelector("#humidity");
+  let description = document.querySelector("#weather-description");
+  let windSpeed = document.querySelector("#wind-speed");
+  let iconElement = document.querySelector("#icon-main");
+
+  location.innerHTML = `${city}, ${country}`;
   currentTempElement.innerHTML = Math.round(response.data.main.temp) + "°C";
   celsiusTemperature = response.data.main.temp;
-  let minTemp = document.querySelector("#min-temp");
   minTemp.innerHTML = Math.round(response.data.main.temp_min);
-  let maxTemp = document.querySelector("#max-temp");
   maxTemp.innerHTML = Math.round(response.data.main.temp_max);
-  let humidity = document.querySelector("#humidity");
   humidity.innerHTML = Math.round(response.data.main.humidity);
-  let description = document.querySelector("#weather-description");
   description.innerHTML =
     response.data.weather[0].main +
     " - " +
     response.data.weather[0].description;
-  let windSpeed = document.querySelector("#wind-speed");
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
-  let iconElement = document.querySelector("#icon-main");
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+  let backgroundElement = document.getElementsByClassName("container")[0];
+  console.log(backgroundElement);
+  backgroundElement.style.backgroundImage = `url("./images/${response.data.weather[0].icon}.jpg")`;
 }
 
 //

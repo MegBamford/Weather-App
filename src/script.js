@@ -93,6 +93,7 @@ function currentTemperature(response) {
   location.innerHTML = `${city}, ${country}`;
   let currentTempElement = document.querySelector("#today-current-temp");
   currentTempElement.innerHTML = Math.round(response.data.main.temp) + "°C";
+  celsiusTemperature = response.data.main.temp;
   let minTemp = document.querySelector("#min-temp");
   minTemp.innerHTML = Math.round(response.data.main.temp_min);
   let maxTemp = document.querySelector("#max-temp");
@@ -112,14 +113,15 @@ function currentTemperature(response) {
 //celsius to fahrenheit
 function fahrenheitLink(event) {
   event.preventDefault();
-  let fahrenheitValue = document.querySelector("#today-current-temp");
-  fahrenheitValue.innerHTML = "78°F";
+  let temperatureElement = document.querySelector("#today-current-temp");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature) + "°F";
 }
 
 function celsiusLink(event) {
   event.preventDefault();
-  let celsiusValue = document.querySelector("#today-current-temp");
-  celsiusValue.innerHTML = "25°C";
+  let temperatureElement = document.querySelector("#today-current-temp");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature) + "°C";
 }
 
 let toFarenheit = document.querySelector("#fahrenheit-link");

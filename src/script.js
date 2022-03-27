@@ -77,6 +77,7 @@ function search(event) {
   let searchInput = document.querySelector("#search-city-input");
   let city = searchInput.value;
   let apiUrl = `${apiEndPoint}q=${city}&units=metric&appid=${apiKey}`;
+  form.reset();
   axios.get(`${apiUrl}`).then(currentTemperature);
 }
 

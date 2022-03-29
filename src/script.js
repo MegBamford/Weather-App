@@ -75,15 +75,16 @@ geolocationButton.addEventListener("click", navigation);
 function search(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-city-input");
-  let city = searchInput.value;
-  let apiUrl = `${apiEndPoint}q=${city}&units=metric&appid=${apiKey}`;
-  form.reset();
+  let cityName = searchInput.value;
+  let apiUrl = `${apiEndPoint}q=${searchInput.value}&units=metric&appid=${apiKey}`;
+  searchForm.reset();
   axios.get(`${apiUrl}`).then(currentTemperature);
 }
 
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", search);
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", search);
 
+search("sydney");
 //
 
 // add response data to html

@@ -60,8 +60,6 @@ function navigation() {
 }
 
 function showPosition(position) {
-  //console.log(position.coords.latitude);
-  //console.log(position.coords.longitude);
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiUrl = `${apiEndPoint}lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
@@ -90,10 +88,20 @@ searchForm.addEventListener("submit", handleSubmit);
 
 search("sydney");
 //
-
+function backgroundImages(response) {
+  let iconElement = document.querySelector("#icon-main");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+  let backgroundElement = document.getElementsByClassName("container")[0];
+  console.log(backgroundElement);
+  backgroundElement.style.backgroundImage = `url("./images/${response.data.weather[0].icon}.jpg")`;
+}
 // add response data to html
 function currentTemperature(response) {
-  console.log(response.data);
+  //console.log(response.data);
   let city = response.data.name;
   let country = response.data.sys.country;
   let location = document.querySelector("h1");
@@ -103,7 +111,6 @@ function currentTemperature(response) {
   let humidity = document.querySelector("#humidity");
   let description = document.querySelector("#weather-description");
   let windSpeed = document.querySelector("#wind-speed");
-  let iconElement = document.querySelector("#icon-main");
 
   location.innerHTML = `${city}, ${country}`;
   currentTempElement.innerHTML = Math.round(response.data.main.temp) + "°C";
@@ -116,14 +123,7 @@ function currentTemperature(response) {
     " - " +
     response.data.weather[0].description;
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
-  let backgroundElement = document.getElementsByClassName("container")[0];
-  console.log(backgroundElement);
-  backgroundElement.style.backgroundImage = `url("./images/${response.data.weather[0].icon}.jpg")`;
+  backgroundImages(response);
 }
 
 //

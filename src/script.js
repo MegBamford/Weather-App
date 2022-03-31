@@ -90,14 +90,44 @@ search("sydney");
 //
 function backgroundImages(response) {
   let iconElement = document.querySelector("#icon-main");
+  let icon = response.data.weather[0].icon;
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `http://openweathermap.org/img/wn/${icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
   let backgroundElement = document.getElementsByClassName("container")[0];
   console.log(backgroundElement);
-  backgroundElement.style.backgroundImage = `url("./images/${response.data.weather[0].icon}.jpg")`;
+  backgroundElement.style.backgroundImage = `url("./images/${icon}.jpg")`;
+  let backgroundMode = document.body;
+  if (
+    icon === "01n" ||
+    icon === "02n" ||
+    icon === "03n" ||
+    icon === "04n" ||
+    icon === "09n" ||
+    icon === "10n" ||
+    icon === "11n" ||
+    icon === "13n" ||
+    icon === "50n"
+  ) {
+    backgroundMode.classList.add("dark-mode");
+    backgroundMode.classList.remove("day-mode");
+  } else if (
+    icon === "01d" ||
+    icon === "02d" ||
+    icon === "03d" ||
+    icon === "04d" ||
+    icon === "09d" ||
+    icon === "10d" ||
+    icon === "11d" ||
+    icon === "13d" ||
+    icon === "50d"
+  );
+  {
+    backgroundMode.classList.add("day-mode");
+    backgroundMode.classList.remove("dark-mode");
+  }
 }
 // add response data to html
 function currentTemperature(response) {

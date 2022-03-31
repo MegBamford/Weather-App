@@ -72,17 +72,21 @@ let geolocationButton = document.querySelector("#geo-Button");
 geolocationButton.addEventListener("click", navigation);
 //
 // weather update via search option
-function search(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-city-input");
-  let cityName = searchInput.value;
-  let apiUrl = `${apiEndPoint}q=${searchInput.value}&units=metric&appid=${apiKey}`;
+function search(city) {
+  let apiUrl = `${apiEndPoint}q=${city}&units=metric&appid=${apiKey}`;
   searchForm.reset();
   axios.get(`${apiUrl}`).then(currentTemperature);
 }
 
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-city-input");
+  let city = searchInput.value;
+  search(city);
+}
+
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+searchForm.addEventListener("submit", handleSubmit);
 
 search("sydney");
 //

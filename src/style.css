@@ -45,7 +45,6 @@ a {
 }
 .container {
   max-width: 400px;
-  background-image: url("https://images.pexels.com/photos/2258536/pexels-photo-2258536.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

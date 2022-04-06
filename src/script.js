@@ -99,34 +99,36 @@ function backgroundImages(response) {
   let backgroundElement = document.getElementsByClassName("container")[0];
   console.log(backgroundElement);
   backgroundElement.style.backgroundImage = `url("./images/${icon}.jpg")`;
-  let backgroundMode = document.body;
+  fontColor(icon);
+}
+function fontColor(icon) {
   if (
+    icon === "01d" ||
     icon === "01n" ||
-    icon === "02n" ||
+    icon === "03d" ||
     icon === "03n" ||
-    icon === "04n" ||
-    icon === "09n" ||
+    icon === "09d" ||
     icon === "10n" ||
+    icon === "11d" ||
     icon === "11n" ||
     icon === "13n" ||
     icon === "50n"
   ) {
-    backgroundMode.classList.add("dark-mode");
-    backgroundMode.classList.remove("day-mode");
+    document.body.style.color = "#white";
   } else if (
-    icon === "01d" ||
-    icon === "02d" ||
-    icon === "03d" ||
+    icon === "04n" ||
     icon === "04d" ||
-    icon === "09d" ||
+    icon === "02n" ||
+    icon === "09n"
+  ) {
+    document.body.style.color = "#8476d2";
+  } else if (
+    icon === "02d" ||
     icon === "10d" ||
-    icon === "11d" ||
     icon === "13d" ||
     icon === "50d"
-  );
-  {
-    backgroundMode.classList.add("day-mode");
-    backgroundMode.classList.remove("dark-mode");
+  ) {
+    document.body.style.color = "#black";
   }
 }
 // add response data to html

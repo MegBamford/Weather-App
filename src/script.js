@@ -146,7 +146,6 @@ function currentTemperature(response) {
 
   location.innerHTML = `${city}, ${country}`;
   currentTempElement.innerHTML = Math.round(response.data.main.temp) + "°C";
-  celsiusTemperature = response.data.main.temp;
   minTemp.innerHTML = Math.round(response.data.main.temp_min);
   maxTemp.innerHTML = Math.round(response.data.main.temp_max);
   humidity.innerHTML = Math.round(response.data.main.humidity);
@@ -157,25 +156,5 @@ function currentTemperature(response) {
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
   backgroundImages(response);
 }
-
-//
-//ctof and ftoc temperature
-function fahrenheitLink(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#today-current-temp");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature) + "°F";
-}
-
-function celsiusLink(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#today-current-temp");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature) + "°C";
-}
-
-let toFarenheit = document.querySelector("#fahrenheit-link");
-toFarenheit.addEventListener("click", fahrenheitLink);
-let toCelsius = document.querySelector("#celsius-link");
-toCelsius.addEventListener("click", celsiusLink);
 
 today();

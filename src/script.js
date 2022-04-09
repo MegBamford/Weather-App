@@ -10,7 +10,7 @@ let daysFull = [
   "Saturday",
 ];
 let dayFull = daysFull[now.getDay()];
-let daysAbbrev = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+let daysAbbrev = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 let dayAbbrev = daysAbbrev[now.getDay()];
 let months = [
   "Jan",
@@ -27,7 +27,7 @@ let months = [
   "Dec",
 ];
 let monthFull = months[now.getMonth()];
-let month = now.getMonth() + 1;
+
 let date = now.getDate();
 let hours = now.getHours();
 if (hours < 10) {
@@ -69,6 +69,53 @@ function showPosition(position) {
 let geolocationButton = document.querySelector("#geo-Button");
 geolocationButton.addEventListener("click", navigation);
 //
+// forecast function
+function formatDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  return daysAbbrev[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  console.log(response.data.daily);
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 7) {
+      forecastHTML =
+        forecastHTML +
+        `
+        <div class="col-2 date">
+        
+          <div class="row">
+            <div class="col-12 day">${formatDate(forecastDay.dt)}</div>
+            <img
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
+          width="30"
+        />
+            <div class="col-12 temperature">${Math.round(
+              forecastDay.temp.min
+            )}/${Math.round(forecastDay.temp.max)}°C</div>
+          </div>
+        </div>`;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  //console.log(coordinates);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 // weather update via search option
 function search(city) {
   let apiUrl = `${apiEndPoint}q=${city}&units=metric&appid=${apiKey}`;
@@ -102,25 +149,7 @@ function backgroundImages(response) {
   fontColor(icon);
 }
 function fontColor(icon) {
-  if (
-    icon === "01d" ||
-    icon === "01n" ||
-    icon === "03d" ||
-    icon === "03n" ||
-    icon === "09d" ||
-    icon === "10n" ||
-    icon === "11d" ||
-    icon === "11n" ||
-    icon === "13n" ||
-    icon === "50n"
-  ) {
-    document.body.style.color = "#white";
-  } else if (
-    icon === "04n" ||
-    icon === "04d" ||
-    icon === "02n" ||
-    icon === "09n"
-  ) {
+  if (icon === "04n" || icon === "04d" || icon === "02n" || icon === "09n") {
     document.body.style.color = "#8476d2";
   } else if (
     icon === "02d" ||
@@ -129,6 +158,8 @@ function fontColor(icon) {
     icon === "50d"
   ) {
     document.body.style.color = "#black";
+  } else {
+    document.body.style.color = "#fff";
   }
 }
 // add response data to html
@@ -155,6 +186,7 @@ function currentTemperature(response) {
     response.data.weather[0].description;
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
   backgroundImages(response);
+  getForecast(response.data.coord);
 }
 
 today();

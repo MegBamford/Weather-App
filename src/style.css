@@ -21,6 +21,7 @@ body {
 h1 {
   font-weight: 700;
   padding: 10px;
+  margin: 0;
 }
 h2 {
   font-size: 50px;
@@ -30,32 +31,32 @@ ul {
   display: block;
   list-style: none;
   padding: 0;
+  padding-left: 6px;
   margin-bottom: 4px;
-  font-size: 16px;
-}
-h3 {
   font-size: 18px;
-  font-weight: bold;
 }
+
 p {
-  margin: 0px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 0;
+  padding-left: 10px;
 }
 
 .container {
-  max-width: 400px;
+  max-width: 420px;
+  min-height: 460px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border: 1px solid #a08d8d;
   padding: 8px;
 }
-.col-4 {
-  text-align: center;
-}
-.col-3,
+
+.col-2,
 .col-12 {
   text-align: center;
-  font-size: 14px;
+  font-size: 15px;
 }
 .weather-type {
   font-family: var(--bs-body-font-family);
@@ -63,6 +64,15 @@ p {
 }
 .date {
   font-weight: bold;
+}
+#current-weather {
+  padding: 16px 0px;
+}
+#forecast {
+  padding: 20px 0px;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
 }
 footer {
   font-size: small;

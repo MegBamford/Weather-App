@@ -65,6 +65,9 @@ p {
 .date {
   font-weight: bold;
 }
+#weather-description-full {
+  text-transform: capitalize;
+}
 #current-weather {
   padding: 16px 0px;
 }

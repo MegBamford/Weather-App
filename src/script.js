@@ -173,6 +173,7 @@ function currentTemperature(response) {
   let maxTemp = document.querySelector("#max-temp");
   let humidity = document.querySelector("#humidity");
   let description = document.querySelector("#weather-description");
+  let descriptionFull = document.querySelector("#weather-description-full");
   let windSpeed = document.querySelector("#wind-speed");
 
   location.innerHTML = `${city}, ${country}`;
@@ -180,10 +181,8 @@ function currentTemperature(response) {
   minTemp.innerHTML = Math.round(response.data.main.temp_min);
   maxTemp.innerHTML = Math.round(response.data.main.temp_max);
   humidity.innerHTML = Math.round(response.data.main.humidity);
-  description.innerHTML =
-    response.data.weather[0].main +
-    " - " +
-    response.data.weather[0].description;
+  description.innerHTML = response.data.weather[0].main;
+  descriptionFull.innerHTML = response.data.weather[0].description;
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
   backgroundImages(response);
   getForecast(response.data.coord);
